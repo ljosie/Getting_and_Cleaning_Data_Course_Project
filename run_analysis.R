@@ -8,33 +8,42 @@
 ## 4. Creates a second, independent tidy data set with the average of each variable for each 
 ##    activity and each subject. 
 
-#path relative to the working directory
-#where the test data should be extracted.
+# Set your working directory
 
-#read test data
+# Load dependencies
+if (!require("data.table")) {
+  install.packages("data.table")
+  require("data.table")
+}
+if (!require("reshape2")) {
+  install.packages("reshape2")
+  require("reshape2")
+}
+
+# Read test data
 subject_test <- read.table("test/subject_test.txt", quote="\"")
 X_test <- read.table("test/X_test.txt", quote="\"")
 y_test <- read.table("test/y_test.txt", quote="\"")
 
-#read training data
+# Read train data
 subject_train <- read.table("train/subject_train.txt", quote="\"")
 X_train <- read.table("train/X_train.txt", quote="\"")
 y_train <- read.table("train/y_train.txt", quote="\"")
 
-#read supporting information
+# Read supporting info
 features <- read.table("features.txt", quote="\"")
 labels <- read.table("activity_labels.txt", quote="\"")
 
-#build tidy subject
+# Build tidy subject
 data_subject <- rbind(subject_train,subject_test)
 colnames(data_subject)[1] <- "Subject"
 
-#build tidy X,y
+# Build tidy X,y
 data_X <- rbind(X_train, X_test)
 colnames(data_X) <- features[,2]
 
 data_y <- rbind(y_train, y_test)
-#integrate label Names      - This should do the trick for Question 3 & 4
+# Merge with label Names
 data_y <- merge(x=data_y, y=labels, by=1)
 colnames(data_y)[1] <- "Result"
 colnames(data_y)[2] <- "ResultName"
@@ -42,18 +51,13 @@ colnames(data_y)[2] <- "ResultName"
 subject <- rbind(subject_train, subject_test)
 colnames(subject)[1] <- "Subject"
 
-#Build one big Dataset
+# Link all columns toghether
 data <- cbind(subject,data_y,data_X)
-#This should finish Question 1
 
-#Keep only the first 3 columns and everything labled mean() or std()
+# Main steps for processing dataset
 colsToKeep <- c(1,2,3,grep("mean\\(\\)|std\\(\\)",colnames(data),ignore.case=TRUE))
-
 data <- data[,colsToKeep]
-#This should finsih Question 2
-
-#build tidy result set as aggegate
-#exclude first three columns, we use those for grouping
+# Aggregating data grouping
 tidy <- aggregate.data.frame(
         x=data[,c(-1,-2,-3)], 
         by=list(
@@ -62,5 +66,5 @@ tidy <- aggregate.data.frame(
                 ResultName=data$ResultName), 
         mean)
 
-#Write result to a file
+# Write result to tidy_data.txt file
 write.table(x=tidy,file="tidy_data.txt", sep=",")
