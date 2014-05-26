@@ -19,12 +19,12 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 4. Appropriately labels the data set with descriptive activity names. 
 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject. 
 
-### The output file is a tab-separated file called `tidy_data.txt`.
-
-Files in this repo:
+###Files in this repo:
 
 - `README.md` - See this file.
 - `Codebook.md` - Description of the data in the dataset and any transforms performed.
 - `run_analysis.R` - R script contains the steps data processing.
 
 To use this script the data (or any data with the same structure) should be placed in the working directory.
+
+The output file is a comma-separated file called `tidy_data.txt`.
