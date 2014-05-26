@@ -27,4 +27,4 @@ Files in this repo:
 - `Codebook.md` - Description of the data in the dataset and any transforms performed.
 - `run_analysis.R` - R script contains the steps data processing.
 
-### To use this script the data (or any data with the same structure) should be placed in the working directory.
+To use this script the data (or any data with the same structure) should be placed in the working directory.
