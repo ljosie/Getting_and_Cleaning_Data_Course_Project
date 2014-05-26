@@ -1,6 +1,6 @@
 Getting_and-Cleaning_Data_Course_Project
 ========================================
-## Human Activity Using Smartphones Summary Tidy Dataset Version 1.0
+### Human Activity Using Smartphones Summary Tidy Dataset Version 1.0
 
 ### Here are some background info on the original data:
 
