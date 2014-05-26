@@ -1,4 +1,4 @@
-Getting_and-Cleaning_Data_Course_Project
+## Getting_and_Cleaning_Data_Course_Project
 ========================================
 
 ### This project is for Getting and Cleaning Data (Peer Assessment).
